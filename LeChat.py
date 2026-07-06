@@ -12,7 +12,7 @@ class LeChat:
     def __init__(self):
         
         self.model= ChatLlamaCpp(
-            model_path= ".models/Phi-3-mini-4k-instruct-fp16.gguf",
+            model_path= "models/Phi-3-mini-4k-instruct-fp16.gguf",
             n_gpu_layers=-1,
             max_tokens=500,
             n_ctx=2048,
@@ -58,6 +58,6 @@ class LeChat:
         """
 
         config = {"configurable": {"session_id": user_id}}
-        output = self.with_history.invoke(user_input, config=config)
+        output = self.with_history.stream(user_input, config=config)
 
         return output
